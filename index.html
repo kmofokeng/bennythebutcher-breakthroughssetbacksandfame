@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benny the Butcher — Breakthroughs, Setbacks and Fame (BSF)</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold:#b89b62;
+      --cream:#e8dcc7;
+      --black:#050505;
+      --gray:#111111;
+      --soft:#191919;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#050505;
+      color:#f3f3f3;
+      font-family:'Inter', sans-serif;
+      overflow-x:hidden;
+      position:relative;
+      cursor:default;
+    }
+
+    h1,h2,h3,h4{
+      font-family:'Cormorant Garamond', serif;
+      letter-spacing:1px;
+    }
+
+    img{
+      pointer-events:none;
+      -webkit-user-drag:none;
+    }
+
+    ::selection{
+      background:transparent;
+    }
+
+    .grain:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+      opacity:.15;
+      mix-blend-mode:soft-light;
+      pointer-events:none;
+      z-index:999;
+    }
+
+    .hero-bg{
+      background:
+      linear-gradient(rgba(0,0,0,.78), rgba(0,0,0,.92)),
+      url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+    }
+
+    .gold-text{
+      color:var(--gold);
+    }
+
+    .glass{
+      background:rgba(255,255,255,.04);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .section-padding{
+      padding:100px 24px;
+    }
+
+    .cinematic-line{
+      width:120px;
+      height:1px;
+      background:linear-gradient(to right, transparent, var(--gold), transparent);
+      margin:20px auto;
+    }
+
+    .track-card{
+      transition:all .45s ease;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+
+    .track-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(184,155,98,.55);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 20px 50px rgba(0,0,0,.4);
+    }
+
+    .single-card{
+      background:
+      linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.9)),
+      url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+    }
+
+    .btn-premium{
+      padding:14px 28px;
+      border:1px solid rgba(184,155,98,.5);
+      color:var(--cream);
+      transition:all .4s ease;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:.8rem;
+      background:rgba(255,255,255,.03);
+    }
+
+    .btn-premium:hover{
+      background:var(--gold);
+      color:#000;
+      transform:translateY(-2px);
+    }
+
+    .snowflake{
+      position:fixed;
+      top:-10px;
+      color:#fff;
+      font-size:10px;
+      opacity:.5;
+      animation:snow linear infinite;
+      z-index:2;
+    }
+
+    @keyframes snow{
+      to{
+        transform:translateY(110vh);
+      }
+    }
+
+    .watermark{
+      position:fixed;
+      bottom:14px;
+      right:18px;
+      z-index:1000;
+      opacity:.12;
+      font-size:.72rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      pointer-events:none;
+    }
+
+    .mini-player{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:20px;
+      width:92%;
+      max-width:500px;
+      z-index:998;
+      background:rgba(0,0,0,.92);
+      border:1px solid rgba(184,155,98,.3);
+      backdrop-filter:blur(12px);
+    }
+
+    .quote{
+      border-left:2px solid var(--gold);
+      padding-left:24px;
+      color:#d8d8d8;
+      font-style:italic;
+    }
+
+    .timeline-card{
+      border-left:1px solid rgba(184,155,98,.4);
+      position:relative;
+    }
+
+    .timeline-card:before{
+      content:"";
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--gold);
+      position:absolute;
+      left:-6px;
+      top:8px;
+    }
+
+    .fade-up{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 1s ease;
+    }
+
+    .fade-up.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    audio{
+      width:100%;
+      filter:invert(1) grayscale(1);
+      opacity:.85;
+    }
+
+    .luxury-border{
+      border:1px solid rgba(184,155,98,.18);
+    }
+  </style>
+</head>
+
+<body class="grain">
+
+  <!-- WATERMARK -->
+  <div class="watermark">
+    Private Listening Presentation — Unauthorized Distribution Prohibited
+  </div>
+
+  <!-- SNOW -->
+  <div id="snow-container"></div>
+
+  <!-- HERO -->
+  <section class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-14 items-center">
+
+      <div class="fade-up">
+        <p class="uppercase tracking-[6px] text-sm text-neutral-400 mb-6">
+          Black Soprano Family Presentation
+        </p>
+
+        <h1 class="text-6xl md:text-8xl leading-none font-semibold mb-6">
+          Benny the Butcher
+        </h1>
+
+        <h2 class="text-3xl md:text-5xl gold-text mb-6">
+          Breakthroughs, Setbacks and Fame (BSF)
+        </h2>
+
+        <p class="uppercase tracking-[4px] text-neutral-400 mb-8">
+          Produced by Perfektionist
+        </p>
+
+        <p class="text-lg text-neutral-300 leading-relaxed max-w-2xl mb-10">
+          “A cinematic return to origins — the soul of Tana Street still pulses in Benny,
+          but the setting has evolved: boardrooms, luxury yachts, mentorship circles,
+          and self-reflection.”
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#experience" class="btn-premium">
+            Enter Listening Experience
+          </a>
+
+          <a href="#rollout" class="btn-premium">
+            View Rollout Blueprint
+          </a>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <div class="glass p-4 rounded-2xl luxury-border shadow-2xl">
+          <div class="aspect-[1/1] bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-800">
+
+            <div class="text-center px-8">
+              <p class="uppercase tracking-[6px] text-neutral-500 text-xs mb-6">
+                Album Cover Placeholder
+              </p>
+
+              <div class="w-40 h-40 rounded-full border border-[var(--gold)] mx-auto flex items-center justify-center">
+                <span class="gold-text text-sm tracking-[4px]">
+                  [ALBUM_COVER_ART_PLACEHOLDER]
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section id="experience" class="section-padding bg-black">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-20 fade-up">
+        <p class="uppercase tracking-[5px] text-neutral-500 mb-4">
+          Editorial Presentation
+        </p>
+
+        <h2 class="text-5xl md:text-6xl mb-4">
+          Album Concept & Theme
+        </h2>
+
+        <div class="cinematic-line"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <div class="fade-up">
+          <p class="text-lg text-neutral-300 leading-[2] mb-8">
+            Breakthroughs, Setbacks and Fame (BSF) is Benny the Butcher at his
+            most introspective and evolved — a cinematic meditation on survival,
+            legacy, wealth, and the invisible scars carried by men who made it
+            out but never fully escaped where they came from.
+          </p>
+
+          <p class="text-lg text-neutral-300 leading-[2] mb-8">
+            The soul of Tana Street still echoes throughout the album, but the
+            scenery has changed. The crackhouses became penthouses. The corner
+            meetings became boardroom negotiations. The paranoia evolved from
+            police sirens into silent envy, hidden agendas, and the emotional
+            cost of elevation.
+          </p>
+
+          <p class="text-lg text-neutral-300 leading-[2]">
+            Across smoky jazz textures, luxury noir instrumentation, and cold
+            Buffalo winter atmospheres, Benny reflects on mentorship, trauma,
+            brotherhood, loyalty, and the consequences that continue to shadow
+            success. The album explores what happens after survival — when fame,
+            wealth, and power force a man to confront himself.
+          </p>
+        </div>
+
+        <div class="space-y-8 fade-up">
+
+          <div class="glass p-8 rounded-2xl">
+            <p class="quote text-xl leading-relaxed">
+              “Luxury doesn’t erase trauma. It just changes the room it sits in.”
+            </p>
+          </div>
+
+          <div class="glass p-8 rounded-2xl">
+            <p class="quote text-xl leading-relaxed">
+              “The hustler mentality survived the streets — but fame introduced
+              new predators.”
+            </p>
+          </div>
+
+          <div class="glass p-8 rounded-2xl">
+            <h3 class="uppercase tracking-[4px] text-sm text-neutral-500 mb-4">
+              Executive Producer Notes
+            </h3>
+
+            <p class="text-neutral-300">
+              [EXECUTIVE_PRODUCER_NOTES]
+            </p>
+          </div>
+
+          <div class="glass p-8 rounded-2xl">
+            <h3 class="uppercase tracking-[4px] text-sm text-neutral-500 mb-4">
+              Album Storyline Notes
+            </h3>
+
+            <p class="text-neutral-300">
+              [ALBUM_STORYLINE_NOTES]
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRACKLIST -->
+  <section class="section-padding bg-[#080808]">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="text-center mb-20 fade-up">
+        <p class="uppercase tracking-[5px] text-neutral-500 mb-4">
+          Premium Sequence
+        </p>
+
+        <h2 class="text-5xl md:text-6xl mb-4">
+          Tracklist & Features
+        </h2>
+
+        <div class="cinematic-line"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- TRACKS -->
+
+        <div class="track-card p-6 rounded-2xl fade-up">
+          <span class="text-neutral-500 text-sm">01</span>
+          <h3 class="text-2xl mt-2">Amen to That (Intro)</h3>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up">
+          <span class="text-neutral-500 text-sm">02</span>
+          <h3 class="text-2xl mt-2">Flip the Script</h3>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up border border-[var(--gold)]">
+          <span class="text-neutral-500 text-sm">03</span>
+          <h3 class="text-2xl mt-2">4th Rope</h3>
+          <p class="gold-text mt-4 uppercase tracking-[3px] text-xs">
+            Feat. Conway the Machine & Westside Gunn
+          </p>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up">
+          <span class="text-neutral-500 text-sm">04</span>
+          <h3 class="text-2xl mt-2">Blue Notes & Mugshots</h3>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up border border-[var(--gold)]">
+          <span class="text-neutral-500 text-sm">05</span>
+          <h3 class="text-2xl mt-2">Made Men</h3>
+          <p class="gold-text mt-4 uppercase tracking-[3px] text-xs">
+            Feat. The Game
+          </p>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up">
+          <span class="text-neutral-500 text-sm">06</span>
+          <h3 class="text-2xl mt-2">BlizzardTalk</h3>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up border border-[var(--gold)]">
+          <span class="text-neutral-500 text-sm">07</span>
+          <h3 class="text-2xl mt-2">Break Loose</h3>
+          <p class="gold-text mt-4 uppercase tracking-[3px] text-xs">
+            Feat. Fuego Base, Rick Hyde, Heem & OT Da Real
+          </p>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up">
+          <span class="text-neutral-500 text-sm">08</span>
+          <h3 class="text-2xl mt-2">If These Bricks Could Talk</h3>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up border border-[var(--gold)]">
+          <span class="text-neutral-500 text-sm">09</span>
+          <h3 class="text-2xl mt-2">PillowTalk</h3>
+          <p class="gold-text mt-4 uppercase tracking-[3px] text-xs">
+            Feat. SZA
+          </p>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up">
+          <span class="text-neutral-500 text-sm">10</span>
+          <h3 class="text-2xl mt-2">Higher and Hgher</h3>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up">
+          <span class="text-neutral-500 text-sm">11</span>
+          <h3 class="text-2xl mt-2">Can't Win</h3>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up border border-[var(--gold)]">
+          <span class="text-neutral-500 text-sm">12</span>
+          <h3 class="text-2xl mt-2">S.N.O.W.</h3>
+          <p class="text-neutral-400 mt-2">
+            Streets Never Offer Warnings
+          </p>
+          <p class="gold-text mt-4 uppercase tracking-[3px] text-xs">
+            Feat. Stove God Cooks
+          </p>
+        </div>
+
+        <div class="track-card p-6 rounded-2xl fade-up">
+          <span class="text-neutral-500 text-sm">13</span>
+          <h3 class="text-2xl mt-2">Fame Costs Extra</h3>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SINGLES -->
+  <section class="section-padding bg-black">
+
+    <div class="max-w-7xl mx-auto">
+
+      <div class="text-center mb-20 fade-up">
+        <p class="uppercase tracking-[5px] text-neutral-500 mb-4">
+          Lead Records
+        </p>
+
+        <h2 class="text-5xl md:text-6xl mb-4">
+          Key Singles
+        </h2>
+
+        <div class="cinematic-line"></div>
+      </div>
+
+      <div class="space-y-20">
+
+        <!-- SINGLE -->
+        <div class="single-card rounded-3xl overflow-hidden p-8 md:p-14 fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+            <div>
+              <p class="uppercase tracking-[5px] text-neutral-500 mb-4">
+                Lead Single
+              </p>
+
+              <h3 class="text-5xl mb-6">
+                Higher and Hgher
+              </h3>
+
+              <p class="text-neutral-300 leading-[2] mb-8">
+                A triumphant yet emotionally expensive anthem about elevation,
+                survival, and the loneliness that accompanies success.
+              </p>
+
+              <audio controls>
+                <source src="[SINGLE_AUDIO_LINK_01]" type="audio/mpeg">
+              </audio>
+            </div>
+
+            <div class="glass p-8 rounded-2xl">
+              <p class="gold-text uppercase tracking-[3px] text-xs mb-4">
+                Visual Direction
+              </p>
+
+              <p class="text-neutral-300 mb-6">
+                Penthouse skyline visuals, late-night reflections, champagne
+                aesthetics, and wealth framed through emotional exhaustion.
+              </p>
+
+              <p class="text-neutral-500 text-sm">
+                [STREAMING_METRICS]
+                <br><br>
+                [DSP_CAMPAIGN_NOTES]
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SINGLE -->
+        <div class="single-card rounded-3xl overflow-hidden p-8 md:p-14 fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+            <div>
+              <h3 class="text-5xl mb-6">
+                PillowTalk Feat. SZA
+              </h3>
+
+              <p class="text-neutral-300 leading-[2] mb-8">
+                Noir romance wrapped in toxic luxury intimacy, emotional conflict,
+                and dangerous attraction.
+              </p>
+
+              <audio controls>
+                <source src="[SINGLE_AUDIO_LINK_02]" type="audio/mpeg">
+              </audio>
+            </div>
+
+            <div class="glass p-8 rounded-2xl">
+              <p class="gold-text uppercase tracking-[3px] text-xs mb-4">
+                Visual Direction
+              </p>
+
+              <p class="text-neutral-300 mb-6">
+                Velvet hotel suites, moody noir lighting, late-night tension,
+                expensive loneliness, and cinematic seduction.
+              </p>
+
+              <p class="text-neutral-500 text-sm">
+                [RELEASE_STRATEGY]
+                <br><br>
+                [AUDIENCE_TARGETING]
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SINGLE -->
+        <div class="single-card rounded-3xl overflow-hidden p-8 md:p-14 fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+            <div>
+              <h3 class="text-5xl mb-6">
+                4th Rope Feat. Conway the Machine & Westside Gunn
+              </h3>
+
+              <p class="text-neutral-300 leading-[2] mb-8">
+                Heavyweight Griselda energy with mafia talk, wrestling metaphors,
+                Buffalo winter aggression, and luxury street warfare.
+              </p>
+
+              <audio controls>
+                <source src="[SINGLE_AUDIO_LINK_03]" type="audio/mpeg">
+              </audio>
+            </div>
+
+            <div class="glass p-8 rounded-2xl">
+              <p class="gold-text uppercase tracking-[3px] text-xs mb-4">
+                Visual Direction
+              </p>
+
+              <p class="text-neutral-300 mb-6">
+                Championship belt imagery, fur coats, monochrome street
+                photography, snowfall, and grimy luxury aesthetics.
+              </p>
+
+              <p class="text-neutral-500 text-sm">
+                [SINGLE_ARTWORK]
+                <br><br>
+                [STREAMING_METRICS]
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SINGLE -->
+        <div class="single-card rounded-3xl overflow-hidden p-8 md:p-14 fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+            <div>
+              <h3 class="text-5xl mb-6">
+                Blue Notes & Mugshots
+              </h3>
+
+              <p class="text-neutral-300 leading-[2] mb-8">
+                Jazz noir introspection about consequences, memory, and the
+                emotional residue of survival.
+              </p>
+
+              <audio controls>
+                <source src="[SINGLE_AUDIO_LINK_04]" type="audio/mpeg">
+              </audio>
+            </div>
+
+            <div class="glass p-8 rounded-2xl">
+              <p class="gold-text uppercase tracking-[3px] text-xs mb-4">
+                Visual Direction
+              </p>
+
+              <p class="text-neutral-300 mb-6">
+                Smoky jazz lounges, police archive aesthetics, detective noir
+                visuals, blue ambient lighting, and cinematic tension.
+              </p>
+
+              <p class="text-neutral-500 text-sm">
+                [DSP_CAMPAIGN_NOTES]
+                <br><br>
+                [VISUAL_DIRECTION]
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SINGLE -->
+        <div class="single-card rounded-3xl overflow-hidden p-8 md:p-14 fade-up">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+            <div>
+              <h3 class="text-5xl mb-6">
+                Flip the Script
+              </h3>
+
+              <p class="text-neutral-300 leading-[2] mb-8">
+                Reinvention, strategic elevation, and executive-level comeback
+                energy framed through luxury business aesthetics.
+              </p>
+
+              <audio controls>
+                <source src="[SINGLE_AUDIO_LINK_05]" type="audio/mpeg">
+              </audio>
+            </div>
+
+            <div class="glass p-8 rounded-2xl">
+              <p class="gold-text uppercase tracking-[3px] text-xs mb-4">
+                Visual Direction
+              </p>
+
+              <p class="text-neutral-300 mb-6">
+                Tailored suits, penthouse negotiations, luxury boardrooms,
+                mafia strategy meetings, and quiet dominance.
+              </p>
+
+              <p class="text-neutral-500 text-sm">
+                [AUDIENCE_TARGETING]
+                <br><br>
+                [SINGLE_ARTWORK]
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ROLLOUT -->
+  <section id="rollout" class="section-padding bg-[#080808]">
+
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-20 fade-up">
+        <p class="uppercase tracking-[5px] text-neutral-500 mb-4">
+          Executive Presentation
+        </p>
+
+        <h2 class="text-5xl md:text-6xl mb-4">
+          Marketing Rollout Blueprint
+        </h2>
+
+        <div class="cinematic-line"></div>
+      </div>
+
+      <div class="space-y-12">
+
+        <div class="timeline-card pl-10 fade-up">
+          <h3 class="text-3xl mb-4 gold-text">
+            Phase 1 — Whisper Campaign
+          </h3>
+
+          <p class="text-neutral-300 leading-[2]">
+            Cryptic teaser visuals, Buffalo winter photography, noir snippets,
+            analog textures, and subtle social media drops engineered to create
+            underground anticipation.
+          </p>
+        </div>
+
+        <div class="timeline-card pl-10 fade-up">
+          <h3 class="text-3xl mb-4 gold-text">
+            Phase 2 — Lead Single Activation
+          </h3>
+
+          <p class="text-neutral-300 leading-[2]">
+            DSP playlist positioning, Griselda ecosystem amplification,
+            underground editorial targeting, and influencer co-sign campaigns.
+          </p>
+        </div>
+
+        <div class="timeline-card pl-10 fade-up">
+          <h3 class="text-3xl mb-4 gold-text">
+            Phase 3 — Visual World Building
+          </h3>
+
+          <p class="text-neutral-300 leading-[2]">
+            Cinematic mini-films, black-and-white trailers, vinyl teaser visuals,
+            documentary snippets, and immersive luxury-noir storytelling.
+          </p>
+        </div>
+
+        <div class="timeline-card pl-10 fade-up">
+          <h3 class="text-3xl mb-4 gold-text">
+            Phase 4 — Collector Economy
+          </h3>
+
+          <p class="text-neutral-300 leading-[2]">
+            Limited vinyl variants, signed collector editions, cassette releases,
+            art-book packaging, and premium luxury merchandise capsules.
+          </p>
+        </div>
+
+        <div class="timeline-card pl-10 fade-up">
+          <h3 class="text-3xl mb-4 gold-text">
+            Phase 5 — Cultural Positioning
+          </h3>
+
+          <p class="text-neutral-300 leading-[2]">
+            Hip hop editorial partnerships, podcast circuit rollout, NPR Tiny
+            Desk-style performances, luxury streetwear collaborations, and
+            cinematic media campaigns.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-20">
+
+        <div class="glass p-8 rounded-2xl fade-up">
+          <h4 class="gold-text uppercase tracking-[3px] text-xs mb-5">
+            Rollout Timeline
+          </h4>
+          <p class="text-neutral-300">[ROLL_OUT_TIMELINE]</p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl fade-up">
+          <h4 class="gold-text uppercase tracking-[3px] text-xs mb-5">
+            PR Partners
+          </h4>
+          <p class="text-neutral-300">[PR_PARTNERS]</p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl fade-up">
+          <h4 class="gold-text uppercase tracking-[3px] text-xs mb-5">
+            DSP Strategy
+          </h4>
+          <p class="text-neutral-300">[DSP_STRATEGY]</p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl fade-up">
+          <h4 class="gold-text uppercase tracking-[3px] text-xs mb-5">
+            Vinyl Strategy
+          </h4>
+          <p class="text-neutral-300">[VINYL_STRATEGY]</p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl fade-up">
+          <h4 class="gold-text uppercase tracking-[3px] text-xs mb-5">
+            Merch Concepts
+          </h4>
+          <p class="text-neutral-300">[MERCH_CONCEPTS]</p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl fade-up">
+          <h4 class="gold-text uppercase tracking-[3px] text-xs mb-5">
+            Documentary Concepts
+          </h4>
+          <p class="text-neutral-300">[DOCUMENTARY_CONCEPTS]</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black border-t border-neutral-900 py-20 px-6">
+
+    <div class="max-w-6xl mx-auto text-center">
+
+      <h2 class="text-4xl mb-4">
+        Benny the Butcher
+      </h2>
+
+      <p class="gold-text uppercase tracking-[5px] text-sm mb-10">
+        Breakthroughs, Setbacks and Fame (BSF)
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-10 text-neutral-400">
+
+        <div>
+          <h4 class="text-white mb-3 uppercase tracking-[3px] text-xs">
+            Genre
+          </h4>
+          <p>Hip Hop; Rap</p>
+        </div>
+
+        <div>
+          <h4 class="text-white mb-3 uppercase tracking-[3px] text-xs">
+            Contact
+          </h4>
+
+          <p>Kamohelo2003@yahoo.com</p>
+          <p>+27847530671</p>
+        </div>
+
+        <div>
+          <h4 class="text-white mb-3 uppercase tracking-[3px] text-xs">
+            Company
+          </h4>
+
+          <p>Z3 Productions</p>
+        </div>
+
+      </div>
+
+      <div class="mt-16 text-neutral-600 text-sm tracking-[3px] uppercase">
+        Confidential Creative Development Presentation
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MINI PLAYER -->
+  <div class="mini-player rounded-2xl p-4">
+    <div class="flex items-center justify-between gap-4">
+
+      <div>
+        <p class="text-xs uppercase tracking-[3px] text-neutral-500">
+          Private Listening Session
+        </p>
+
+        <p class="text-sm gold-text">
+          Breakthroughs, Setbacks and Fame
+        </p>
+      </div>
+
+      <audio controls>
+        <source src="[SINGLE_AUDIO_LINK_01]" type="audio/mpeg">
+      </audio>
+
+    </div>
+  </div>
+
+  <script>
+
+    // FADE UP ANIMATIONS
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // SNOW
+    const snowContainer = document.getElementById('snow-container');
+
+    for(let i=0;i<80;i++){
+      const snow = document.createElement('div');
+      snow.classList.add('snowflake');
+      snow.innerHTML = '•';
+
+      snow.style.left = Math.random()*100 + 'vw';
+      snow.style.animationDuration = (Math.random()*10 + 8) + 's';
+      snow.style.opacity = Math.random();
+      snow.style.fontSize = (Math.random()*6 + 4) + 'px';
+
+      snowContainer.appendChild(snow);
+    }
+
+    // DISABLE ACTIONS
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    document.addEventListener('keydown', function(e){
+
+      if(
+        e.ctrlKey &&
+        (
+          e.key === 'c' ||
+          e.key === 's' ||
+          e.key === 'p' ||
+          e.key === 'u'
+        )
+      ){
+        e.preventDefault();
+      }
+
+      if(e.key === 'F12'){
+        e.preventDefault();
+      }
+
+    });
+
+    document.addEventListener('dragstart', e => e.preventDefault());
+
+    // PRINT BLOCK
+    window.onbeforeprint = function(){
+      return false;
+    }
+
+  </script>
+
+</body>
+</html>
